@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apt. 393 x TALIASOL | Studio SOL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #f3f0f8;
+            --color-bg-dark: #1a1a1a;
+            --color-text: #1a1a1a;
+            --color-text-light: #f5f5f5;
+            --color-text-secondary: #666666;
+            --color-accent: #8b5cf6;
+            --color-accent-dark: #6d28d9;
+            --font-display: 'Montserrat', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(245, 240, 235, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+        
+        .nav-logo a {
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--color-accent-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--color-bg-dark);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% 50%, rgba(139, 92, 246, 0.2), transparent);
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .hero-collab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-brand {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 300;
+            color: var(--color-text-light);
+            letter-spacing: 0.1em;
+        }
+
+        .hero-x {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-accent);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 2rem;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .hero-tag {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
+
+        /* Project Info */
+        .project-info {
+            padding: 5rem 3rem;
+            background: var(--color-bg);
+        }
+
+        .info-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Gallery Sections */
+        .gallery-section {
+            padding: 6rem 3rem;
+        }
+
+        .gallery-section.dark {
+            background: var(--color-bg-dark);
+            color: var(--color-text-light);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title span {
+            color: var(--color-accent);
+        }
+
+        /* Featured Image */
+        .featured-image {
+            max-width: 1400px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .featured-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Grid Gallery */
+        .grid-gallery {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-item {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .grid-item img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Three Column Grid */
+        .three-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .three-grid .grid-item {
+            aspect-ratio: 1;
+        }
+
+        .three-grid .grid-item img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Stories Grid */
+        .stories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .story-item {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .story-item:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .story-item img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 8rem 3rem;
+            background: var(--color-bg);
+        }
+
+        .process-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .process-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .process-text {
+            font-size: 1.25rem;
+            line-height: 2;
+            color: var(--color-text-secondary);
+        }
+
+        .process-text strong {
+            color: var(--color-text);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 8rem 3rem;
+            background: var(--color-accent);
+            text-align: center;
+        }
+
+        .quote-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: var(--color-bg-dark);
+        }
+
+        /* Next Project */
+        .next-project {
+            padding: 8rem 3rem;
+            text-align: center;
+            background: var(--color-bg-dark);
+        }
+
+        .next-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 1rem;
+        }
+
+        .next-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+        }
+
+        .next-title:hover {
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 3rem;
+            background: var(--color-bg-dark);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--color-text-light);
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            display: inline-block;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .three-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+            .hero-collab {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .grid-gallery {
+                grid-template-columns: 1fr;
+            }
+            .three-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .gallery-section {
+                padding: 4rem 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo" dir="ltr">STUDIO SOL</a>
+        <a href="index.html#projects" class="nav-back">
+            <span>←</span>
+            <span>Back to Projects</span>
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-collab">
+                <span class="hero-brand">Apt. 393</span>
+                <span class="hero-x">×</span>
+                <span class="hero-brand">TALIASOL</span>
+            </div>
+            <h1 class="hero-title">
+                Product
+                <span>Design</span>
+            </h1>
+            <p class="hero-subtitle">
+                Designers with the end-user in mind, focusing on usability, functionality, and aesthetics. 
+                Cooperation between brands can be a powerful strategy for growth, innovation, and achieving mutual business objectives.
+            </p>
+            <div class="hero-tags">
+                <span class="hero-tag">Product Design</span>
+                <span class="hero-tag">Brand Collaboration</span>
+                <span class="hero-tag">Packaging</span>
+                <span class="hero-tag">Print Design</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Info -->
+    <section class="project-info">
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Client</div>
+                <div class="info-value">Apt. 393 × TALIASOL</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Year</div>
+                <div class="info-value">2024</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Industry</div>
+                <div class="info-value">Lifestyle & Fashion</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Role</div>
+                <div class="info-value">Product Designer</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="process-content fade-in">
+            <h2 class="process-title">The Collaboration</h2>
+            <p class="process-text">
+                This project represents a <strong>unique collaboration</strong> between two distinctive brands. 
+                By combining their strengths, we created a product line that embodies both 
+                <strong>functionality and beauty</strong>. Every detail was carefully considered 
+                to deliver an exceptional user experience.
+            </p>
+        </div>
+    </section>
+
+    <!-- Product Details Grid -->
+    <section class="gallery-section dark">
+        <h2 class="section-title fade-in">Product <span>Details</span></h2>
+        <div class="grid-gallery fade-in">
+            <div class="grid-item">
+                <img src="images/Product Design/o1.png" alt="Product Details">
+            </div>
+            <div class="grid-item">
+                <img src="images/Product Design/Dimensions.png" alt="Product Dimensions">
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="quote-section">
+        <p class="quote-text fade-in">
+            "Great design is not just what it looks like — it's how it works, feels, and connects with people."
+        </p>
+    </section>
+
+    <!-- More Products -->
+    <section class="gallery-section">
+        <h2 class="section-title fade-in">The <span>Collection</span></h2>
+        <div class="grid-gallery fade-in">
+            <div class="grid-item">
+                <img src="images/Product Design/Artboard 1.png" alt="Product Artboard">
+            </div>
+            <div class="grid-item">
+                <img src="images/Product Design/Postcard_0.a1.png" alt="Postcard Design">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories -->
+    <section class="gallery-section dark">
+        <h2 class="section-title fade-in">Social <span>Stories</span></h2>
+        <div class="stories-grid fade-in">
+            <div class="story-item">
+                <img src="images/Product Design/story2.PNG" alt="Story 2">
+            </div>
+            <div class="story-item">
+                <img src="images/Product Design/story3.PNG" alt="Story 3">
+            </div>
+            <div class="story-item">
+                <img src="images/Product Design/story4.PNG" alt="Story 4">
+            </div>
+            <div class="story-item">
+                <img src="images/Product Design/story5.PNG" alt="Story 5">
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Project -->
+    <section class="next-project">
+        <div class="next-label">Next Project</div>
+        <a href="passportcard-pay.html" class="next-title">PassportCard Pay</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <span class="footer-logo" dir="ltr">STUDIO SOL</span>
+        <span class="footer-copyright">© 2025 All rights reserved</span>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

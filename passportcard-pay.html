@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassportCard Pay | Studio SOL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-bg-secondary: #111111;
+            --color-text: #f5f5f5;
+            --color-text-secondary: #a0a0a0;
+            --color-accent: #00d4ff;
+            --color-accent-dark: #0099cc;
+            --color-accent-light: #33e0ff;
+            --font-display: 'Montserrat', sans-serif;
+            --font-body: 'Rubik', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+        
+        .nav-logo a {
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 30% 20%, rgba(0, 212, 255, 0.2), transparent),
+                radial-gradient(ellipse 60% 40% at 70% 80%, rgba(0, 153, 204, 0.15), transparent),
+                var(--color-bg);
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+            max-width: 1200px;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            padding-bottom: 0.1em;
+            overflow: visible;
+            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Project Info */
+        .project-info {
+            padding: 5rem 3rem;
+            background: var(--color-bg-secondary);
+        }
+
+        .info-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* App Showcase */
+        .app-showcase {
+            padding: 6rem 3rem;
+        }
+
+        .showcase-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .showcase-item {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        }
+        
+        .showcase-item.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .showcase-item.full-width img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .showcase-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 8rem 3rem;
+            background: var(--color-bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--color-accent);
+        }
+
+        .section-desc {
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: var(--color-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .feature-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Screenshots Grid */
+        .screenshots-section {
+            padding: 6rem 3rem;
+        }
+
+        .screenshots-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .screenshot-item {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            background: var(--color-bg-secondary);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .screenshot-item:hover {
+            transform: scale(1.05);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border-radius: 100px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--color-accent-light);
+            transform: translateY(-3px);
+        }
+
+        /* Next Project */
+        .next-project {
+            padding: 8rem 3rem;
+            text-align: center;
+            background: var(--color-bg);
+        }
+
+        .next-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .next-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 800;
+            transition: color 0.3s ease;
+        }
+
+        .next-title:hover {
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            display: inline-block;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-grid, .features-grid, .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-features {
+                gap: 2rem;
+            }
+            .gallery-section, .app-showcase, .features-section {
+                padding: 4rem 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo" dir="ltr">STUDIO SOL</a>
+        <a href="index.html#projects" class="nav-back">
+            <span>←</span>
+            <span>חזרה לפרויקטים</span>
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>💳</span>
+                <span>Fintech App</span>
+            </div>
+            <h1 class="hero-title" dir="ltr">
+                PassportCard
+                <span>Pay</span>
+            </h1>
+            <p class="hero-subtitle">
+                אפליקציה פיננסית חכמה להחזרי מע"מ בחו"ל. פתרון דיגיטלי מתקדם 
+                שמאפשר למטיילים לקבל החזרי מע"מ בקלות ובמהירות
+            </p>
+            <div class="hero-features">
+                <div class="feature-item">
+                    <div class="feature-icon">✈️</div>
+                    <div class="feature-text">החזרי מע"מ</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-text">אפליקציה נוחה</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌍</div>
+                    <div class="feature-text">מדינות רבות</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-text">עיבוד מהיר</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Info -->
+    <section class="project-info">
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Client</div>
+                <div class="info-value">PassportCard</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Year</div>
+                <div class="info-value">2025</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Industry</div>
+                <div class="info-value">Fintech</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Role</div>
+                <div class="info-value">UX/UI Designer</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Showcase -->
+    <section class="app-showcase">
+        <div class="showcase-grid fade-in">
+            <div class="showcase-item full-width">
+                <img src="images/passportcard pay/PassportCard Pay.png" alt="PassportCard Pay">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">תכונות <span>מרכזיות</span></h2>
+            <p class="section-desc">פתרון מקיף להחזרי מע"מ עם חוויית משתמש מעולה</p>
+        </div>
+        <div class="features-grid fade-in">
+            <div class="feature-card">
+                <div class="feature-card-icon">📸</div>
+                <h3 class="feature-card-title">סריקת קבלות</h3>
+                <p class="feature-card-desc">סריקה מהירה וקלה של קבלות באמצעות המצלמה של הטלפון</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">🌐</div>
+                <h3 class="feature-card-title">מדינות רבות</h3>
+                <p class="feature-card-desc">תמיכה במדינות פופולריות כמו יוון, צרפת, פורטוגל ועוד</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">💼</div>
+                <h3 class="feature-card-title">ניהול בקשות</h3>
+                <p class="feature-card-desc">מעקב אחר כל הבקשות והחזרים במקום אחד</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">🔒</div>
+                <h3 class="feature-card-title">אבטחה מתקדמת</h3>
+                <p class="feature-card-desc">הגנה מלאה על המידע הפיננסי והפרטיות</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">📊</div>
+                <h3 class="feature-card-title">דשבורד חכם</h3>
+                <p class="feature-card-desc">ממשק אינטואיטיבי לניהול וצפייה בכל הפעילות</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">⚡</div>
+                <h3 class="feature-card-title">עיבוד מהיר</h3>
+                <p class="feature-card-desc">קבלת החזרים בזמן קצר עם תהליך פשוט ויעיל</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="cta-title fade-in">מוכנים להתחיל?</h2>
+        <div class="cta-buttons fade-in">
+            <a href="https://www.passportcard.co.il/financial-services/passportcard-pay/" target="_blank" class="cta-btn">
+                <span>להורדת האפליקציה</span>
+                <span>→</span>
+            </a>
+            <a href="https://www.passportcard.co.il/financial-services/passportcard-pay/" target="_blank" class="cta-btn">
+                <span>למידע נוסף</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Next Project -->
+    <section class="next-project">
+        <div class="next-label">הפרויקט הבא</div>
+        <a href="social-media.html" class="next-title">Social Media</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <span class="footer-logo" dir="ltr">STUDIO SOL</span>
+        <span class="footer-copyright">© 2025 All rights reserved</span>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
